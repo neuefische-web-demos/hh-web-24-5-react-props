@@ -2,21 +2,25 @@ import React from "react";
 import "./styles.css";
 
 export default function App() {
+  function handlePet() {
+    console.log("Thanks for petting me!");
+  }
+
   return (
     <div>
-      <Pet />
-      <Pet />
-      <Pet />
+      <Pet sound="Meow" emoji="🐈" name="cat" onPet={handlePet} isHungry />
+      <Pet sound="Woof" emoji="🐕" name="dog" onPet={handlePet} />
+      <Pet sound="Squeak" emoji="🐁" name="mouse" onPet={handlePet} />
     </div>
   );
 }
 
-function Pet() {
+function Pet({ sound, name, emoji, onPet, isHungry }) {
   return (
-    <div>
-      Meow{" "}
-      <span role="img" aria-label="A cat">
-        🐈
+    <div onClick={onPet}>
+      {isHungry ? "Feed me!" : sound}{" "}
+      <span role="img" aria-label={name}>
+        {emoji}
       </span>
     </div>
   );
